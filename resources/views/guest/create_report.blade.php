@@ -6,7 +6,7 @@
     <title>Create Report</title>
     @include('layout.cdn')
 </head>
-<body class="bg-gradient-to-b from-green-400 to-blue-500 min-h-screen">
+<body class="bg-gradient-to-r from-blue-100 to-purple-100 min-h-screen p-8">
     <div class="flex flex-col items-center justify-center min-h-screen">
         <div class="w-full max-w-4xl bg-white shadow-md rounded-lg p-8">
             <h1 class="text-2xl font-bold text-center text-green-500 mb-6">Keluhan</h1>

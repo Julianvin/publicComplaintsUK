@@ -9,45 +9,7 @@
 </head>
 <body class="min-h-screen">
   <!-- Sweet Alert Notifications -->
-  @if (Session::has('success'))
-  <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          Swal.fire({
-              title: "Berhasil!",
-              text: "{{ Session::get('success') }}",
-              icon: "success",
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 2500,
-              timerProgressBar: true,
-              toast: true,
-              customClass: {
-                  popup: 'animated fadeInRight'
-              }
-          });
-      });
-  </script>
-@endif
-
-@if (Session::has('failed'))
-  <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          Swal.fire({
-              title: "Oops...",
-              text: "{{ Session::get('failed') }}",
-              icon: "error",
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 2500,
-              timerProgressBar: true,
-              toast: true,
-              customClass: {
-                  popup: 'animated fadeInRight'
-              }
-          });
-      });
-  </script>
-@endif
+  @include('layout.alert')
     <main class="relative min-h-screen overflow-hidden">
         <!-- Background container -->
         <div class="absolute inset-0 flex">

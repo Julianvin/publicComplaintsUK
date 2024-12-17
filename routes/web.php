@@ -32,5 +32,6 @@ Route::post('/report/{reportId}/comment/store', [GuestController::class, 'storeC
 Route::get('/headstaff', [HeadStaffController::class, 'index'])->name('headstaff_page');
 Route::get('/headstaff/create', [HeadStaffController::class, 'createAcc'])->name('headstaff_create_acc');
 Route::post('/headstaff/create', [HeadStaffController::class, 'storeAcc'])->name('headstaff_store_acc');
-
+Route::get('/headstaff/destroy/{id}', [HeadStaffController::class, 'destroyAcc'])->name('headstaff_destroy_acc');
+Route::patch('/headstaff/reset-password/{id}', [HeadStaffController::class, 'resetPassword'])->name('reset_password_staff');
 });

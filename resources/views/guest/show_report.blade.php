@@ -34,7 +34,7 @@
     @include('layout.cdn')
 </head>
 
-<body class="bg-gradient-to-b from-green-400 to-blue-500 min-h-screen">
+<body class="bg-gradient-to-r from-blue-100 to-purple-100 min-h-screen p-8">
 
     <main class="container mx-auto py-8 px-4">
         @include('layout.alert')

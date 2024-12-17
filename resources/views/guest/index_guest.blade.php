@@ -51,7 +51,7 @@
     </style>
 </head>
 
-<body class="bg-gradient-to-b from-green-400 to-blue-500 min-h-screen">
+<body class="bg-gradient-to-r from-blue-100 to-purple-100 min-h-screen p-8">
 
     @include('layout.alert')
 

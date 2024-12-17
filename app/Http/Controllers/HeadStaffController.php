@@ -33,56 +33,70 @@ class HeadStaffController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        // Mendapatkan data provinsi dari akun HEAD_STAFF yang sedang login
-        $headStaff = Auth::user(); // Asumsikan Auth sudah diatur
+        $headStaff = Auth::user();
         if ($headStaff->role !== 'HEAD_STAFF') {
             return redirect()->back()->with('failed', 'tidak ada akses.');
         }
 
         $province = Staff_provinces::where('user_id', $headStaff->id)->value('province');
 
-        // Pastikan data provinsi tersedia
         if (!$province) {
             return redirect()->back()->with('failed', 'Province data not found.');
         }
 
-        // Membuat akun di tabel users
         $user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 'STAFF',
         ]);
 
-        // Membuat data di tabel staff_provinces
         Staff_provinces::create([
             'user_id' => $user->id,
             'province' => $province,
         ]);
 
-        // Response sukses menggunakan session flash message
         return redirect()->back()->with('success', 'Account successfully created.');
     }
 
     public function destroyAcc($id)
     {
-        // Validasi bahwa yang mengakses adalah HEAD_STAFF
-        $headStaff = Auth::user(); // Asumsikan Auth sudah diatur
+        $headStaff = Auth::user();
         if ($headStaff->role !== 'HEAD_STAFF') {
-            return redirect()->back()->with('failed', 'Unauthorized access.');
+            return redirect()->back()->with('failed', 'tidak ada akses.');
         }
-
-        // Cari user berdasarkan ID
         $user = User::find($id);
 
         if (!$user) {
-            return redirect()->back()->with('failed', 'User not found.');
+            return redirect()->back()->with('failed', 'Akun tidak ditemukan.');
         }
-
-        // Pastikan user yang dihapus adalah STAFF
         if ($user->role !== 'STAFF') {
-            return redirect()->back()->with('failed', 'Only STAFF accounts can be deleted.');
+            return redirect()->back()->with('failed', 'cuma bisa menghapus akun staff.');
         }
         $user->delete();
-        return redirect()->back()->with('success', 'Account successfully deleted.');
+        return redirect()->back()->with('success', 'Akun berhasil dihapus.');
+    }
+
+
+    public function resetPassword($id)
+    {
+        $headStaff = Auth::user(); 
+        if ($headStaff->role !== 'HEAD_STAFF') {
+            return redirect()->back()->with('failed', 'tidak ada akses.');
+        }
+
+        $user = User::find($id);
+
+        if (!$user) {
+            return redirect()->back()->with('failed', 'Akun tidak ditemukan.');
+        }
+
+        $emailPrefix = substr($user->email, 0, 4);
+        $newPassword = $emailPrefix . '123';
+
+        $user->update([
+            'password' => Hash::make($newPassword),
+        ]);
+
+        return redirect()->back()->with('success', "Password berhasil direset. Password baru: $newPassword");
     }
 }
