@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController; 
-use App\Http\Controllers\GuestController; 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HeadStaffController;
+use App\Http\Controllers\StaffProvinceController;
 
 
 
@@ -14,7 +15,7 @@ Route::middleware('isNotLogin')->group(function () {
     Route::post('/login', [AuthController::class, 'authLogin'])->name('login.auth');
 });
 
-    
+
 Route::middleware('isLogin')->group(function () {
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 /* guest router */
@@ -34,4 +35,7 @@ Route::get('/headstaff/create', [HeadStaffController::class, 'createAcc'])->name
 Route::post('/headstaff/create', [HeadStaffController::class, 'storeAcc'])->name('headstaff_store_acc');
 Route::get('/headstaff/destroy/{id}', [HeadStaffController::class, 'destroyAcc'])->name('headstaff_destroy_acc');
 Route::patch('/headstaff/reset-password/{id}', [HeadStaffController::class, 'resetPassword'])->name('reset_password_staff');
+
+/* staff route */
+Route::get('/staff', [StaffProvinceController::class, 'index'])->name('staff_page');
 });

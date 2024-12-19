@@ -5,13 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
-    @include('layout.cdn')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
         const USER_ID = @json(auth()->id());
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    @include('layout.cdn')
     <style>
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
@@ -55,7 +53,7 @@
 </head>
 
 <body class="bg-gradient-to-r from-blue-100 to-purple-100 min-h-screen p-4 md:p-8">
-    
+
     <!-- Main Container -->
     <div class="max-w-screen-xl mx-auto p-4 md:p-6">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -117,7 +115,7 @@
                         <li class="transition duration-300 hover:text-green-600">Keseluruhan data pada pengaduan bernilai BENAR dan DAPAT DIPERTANGGUNG JAWABKAN.</li>
                         <li class="transition duration-300 hover:text-green-600">Seluruh bagian data perlu diisi.</li>
                         <li class="transition duration-300 hover:text-green-600">Periksa tanggapan kami pada Dashboard setelah Anda Login.</li>
-                        <li class="transition duration-300 hover:text-green-600">Pembuatan pengaduan dapat dilakukan pada halaman berikut: 
+                        <li class="transition duration-300 hover:text-green-600">Pembuatan pengaduan dapat dilakukan pada halaman berikut:
                             <a href="{{ route('guest_create_report') }}" class="text-blue-600 underline hover:text-blue-800 transition duration-300">Ikuti Tautan</a>.
                         </li>
                     </ol>
