@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
                 body: JSON.stringify({
                     report_id: reportId,
-                    user_id: USER_ID, // Pastikan USER_ID didefinisikan di aplikasi
+                    user_id: USER_ID,
                 }),
             })
                 .then((response) => response.json())
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         // Animasi vote atau unvote
                         const animation = document.createElement("div");
-                        animation.textContent = isVoted ? "+1" : "-1";
+                        animation.textContent = isVoted ? "-1" : "+1";
                         animation.classList.add("vote-animation");
                         animation.style.left = `${
                             this.getBoundingClientRect().left + 10
@@ -70,6 +70,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         const votingCountSpan =
                             reportCard.querySelector(".voting-count");
                         votingCountSpan.textContent = data.voting_count;
+
+                        // Add pop-up animation to the fire icon
+                        this.classList.add("animate-popUp");
+                        setTimeout(() => {
+                            this.classList.remove("animate-popUp");
+                        }, 300);
                     } else {
                         console.error("Gagal memproses voting:", data.message);
                     }

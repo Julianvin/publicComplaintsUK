@@ -1,51 +1,53 @@
-// Logika untuk toggle konten pengaduan
-document.querySelectorAll(".toggle-content").forEach((header) => {
-    header.addEventListener("click", () => {
-        const targetId = header.getAttribute("data-target");
-        const targetContent = document.getElementById(targetId);
-        const toggleIcon = header.querySelector(".toggle-icon");
+document.addEventListener('DOMContentLoaded', function() {
+    // Toggle content
+    document.querySelectorAll(".toggle-content").forEach((header) => {
+        header.addEventListener("click", () => {
+            const targetId = header.getAttribute("data-target");
+            const targetContent = document.getElementById(targetId);
+            const toggleIcon = header.querySelector(".toggle-icon");
 
-        if (targetContent.classList.contains("hidden")) {
-            // Menampilkan konten dengan animasi
-            targetContent.classList.remove("hidden", "opacity-0", "scale-down");
-            targetContent.classList.add("opacity-100", "scale-up");
-            toggleIcon.classList.add("rotate-180");
-        } else {
-            // Menyembunyikan konten tanpa animasi
-            targetContent.classList.add("opacity-0", "scale-down");
-            setTimeout(() => {
-                targetContent.classList.add("hidden");
-            }, 300); // Durasi animasi membuka (3 detik)
-            toggleIcon.classList.remove("rotate-180");
-        }
+            if (targetContent.classList.contains("hidden")) {
+                targetContent.classList.remove("hidden", "opacity-0");
+                targetContent.classList.add("opacity-100");
+                toggleIcon.classList.add("rotate-180");
+            } else {
+                targetContent.classList.remove("opacity-100");
+                targetContent.classList.add("opacity-0");
+                setTimeout(() => {
+                    targetContent.classList.add("hidden");
+                }, 300);
+                toggleIcon.classList.remove("rotate-180");
+            }
+        });
     });
-});
 
+    // Tab functionality
+    document.querySelectorAll(".bg-white").forEach((container) => {
+        const tabs = container.querySelectorAll(".tab-button");
+        const contents = container.querySelectorAll(".tab-content");
 
-// Logika untuk tab
-document.querySelectorAll(".bg-white").forEach((container) => {
-    const tabs = container.querySelectorAll(".tab-button");
-    const contents = container.querySelectorAll(".tab-content");
+        contents[0]?.classList.remove("hidden");
+        tabs[0]?.classList.add("text-green-800", "border-b-2", "border-green-500");
 
-    contents[0]?.classList.remove("hidden");
+        tabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+                const tabName = tab.getAttribute("data-tab");
 
-    tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-            const tabName = tab.getAttribute("data-tab");
+                tabs.forEach(t => t.classList.remove("text-green-800", "border-b-2",
+                    "border-green-500"));
+                tab.classList.add("text-green-800", "border-b-2",
+                    "border-green-500");
 
-            tabs.forEach(t => t.classList.remove("text-green-800", "border-b-2", "border-green-500"));
-            tab.classList.add("text-green-800", "border-b-2", "border-green-500");
+                contents.forEach((content) => {
+                    content.classList.add("hidden");
+                });
 
-            contents.forEach((content) => {
-                content.classList.add("hidden");
+                container.querySelector(`#${tabName}`).classList.remove("hidden");
             });
-
-            container.querySelector(`#${tabName}`).classList.remove("hidden");
         });
     });
 });
 
-// Fungsi untuk memanggil SweetAlert dan menghapus data
 function openModalDelete(id, created_at) {
     Swal.fire({
         title: "Apakah Anda yakin?",
@@ -57,7 +59,6 @@ function openModalDelete(id, created_at) {
         reverseButtons: true,
     }).then((result) => {
         if (result.isConfirmed) {
-            // Pastikan URL sesuai dengan route
             window.location.href = `/report/${id}/hapus/report`;
         }
     });

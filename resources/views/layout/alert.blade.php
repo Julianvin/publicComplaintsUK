@@ -25,7 +25,7 @@
               title: "Berhasil!",
               text: "{{ Session::get('success') }}",
               icon: "success",
-              position: "top-end",
+              position: "t",
               showConfirmButton: false,
               timer: 2500,
               timerProgressBar: true,

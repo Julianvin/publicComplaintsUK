@@ -2,7 +2,7 @@
 namespace App\Charts;
 
 use ArielMejiaDev\LarapexCharts\LarapexChart;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Report;
 
 class ReportResponChart
 {
@@ -25,7 +25,7 @@ class ReportResponChart
         $province = $user->staff->province; 
         
         // Menghitung jumlah report yang sesuai dengan provinsi
-        $reports = \App\Models\Report::where('province', $province);
+        $reports = Report::where('province', $province);
 
         // Total report untuk provinsi
         $totalReports = $reports->count();
