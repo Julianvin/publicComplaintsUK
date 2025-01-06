@@ -90,13 +90,27 @@
                                     </button>
                                 @else
                                     @php
-                                        $histories = $report->Response->Progres?->histories
-                                            ? json_decode($report->Response->Progres->histories)
-                                            : [];
-                                        $totalSteps = count($histories);
-                                        $completedSteps = $totalSteps;
+
+                                        $histories = [];
+
+                                        if (
+                                            is_array($report->Response->progress) &&
+                                            count($report->Response->progress) > 0
+                                        ) {
+                                            $histories = json_decode($report->response->progress->histories);
+                                        } else {
+                                            $histories = [];
+                                        }
                                     @endphp
                                     <div class="space-y-4">
+                                        <p class="font-semibold text-gray-700">Response Status:
+                                            <span
+                                                class="text-lg font-medium @if ($report->response->response_status == 'ON_PROCESS') text-yellow-500
+                                                @elseif($report->response->response_status == 'DONE') text-green-600
+                                                @else text-red-600 @endif">
+                                                {{ $report->response->response_status }}
+                                            </span>
+                                        </p>
                                         @foreach ($histories as $index => $history)
                                             <div class="flex items-center">
                                                 <div class="flex items-center relative">

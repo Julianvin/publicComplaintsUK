@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('responses_progress', function (Blueprint $table) {
-          $table->id();
-          $table->foreignId('response_id')->constrained('responses')->onDelete('cascade');
-          $table->json('histories');
-          $table->timestamps();
+            $table->id();
+            $table->foreignId('response_id')->constrained('responses')->onDelete('cascade');
+            $table->json('histories');
+            $table->timestamps();
         });
     }
 

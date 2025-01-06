@@ -23,7 +23,7 @@ class isNotLogin
                 return redirect()->route('guest_page')->with('failed', 'Anda sudah login, anda tidak bisa masuk ke halaman login lagi!');
             }
             if (auth()->user()->role === 'STAFF') {
-                return redirect()->route('')->with('failed', 'Anda sudah login, anda tidak bisa masuk ke halaman login lagi!');
+                return redirect()->route('staff_page')->with('failed', 'Anda sudah login, anda tidak bisa masuk ke halaman login lagi!');
             }
             if (auth()->user()->role === 'HEAD_STAFF') {
                 return redirect()->route('headstaff_page')->with('failed', 'Anda sudah login, anda tidak bisa masuk ke halaman login lagi!');

@@ -12,19 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reports', function (Blueprint $table) {
-          $table->id();
-          $table->foreignId('user_id')->constrained()->onDelete('cascade');
-          $table->text('description');
-          $table->enum('type', ['KEJAHATAN', 'PEMBANGUNAN', 'SOSIAL']);
-          $table->string('province', 255);
-          $table->string('regency', 255);
-          $table->string('subdistrict', 255);
-          $table->string('village', 255);
-          $table->json('voting');
-          $table->integer('viewers')->default(0);
-          $table->string('image', 255)->nullable();
-          $table->boolean('statement');
-          $table->timestamps();
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->text('description');
+            $table->enum('type', ['KEJAHATAN', 'PEMBANGUNAN', 'SOSIAL']);
+            $table->string('province', 255);
+            $table->string('regency', 255);
+            $table->string('subdistrict', 255);
+            $table->string('village', 255);
+            $table->json('voting');
+            $table->integer('viewers')->default(0);
+            $table->string('image', 255)->nullable();
+            $table->boolean('statement');
+            $table->timestamps();
         });
     }
 

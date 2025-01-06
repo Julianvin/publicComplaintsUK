@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Detail Pengaduan</title>
-    
+
     @include('layout.cdn')
     <style>
         @keyframes fadeIn {
@@ -58,8 +58,7 @@
                 <div class="bg-white rounded-lg shadow-xl overflow-hidden animate-fadeIn">
                     <!-- Header Report -->
                     <div class="relative">
-                        <img src="{{ asset('storage/assets/images/reports/' . $report->image) }}"
-                            alt="Gambar Pengaduan"
+                        <img src="{{ asset('storage/assets/images/reports/' . $report->image) }}" alt="Gambar Pengaduan"
                             class="w-full h-64 object-cover rounded-t-lg shadow-lg">
                         <div class="absolute bottom-4 left-4 bg-black bg-opacity-50 py-2 px-4 rounded-lg">
                             <h1 class="text-xl font-bold text-white">Detail Pengaduan</h1>
@@ -74,15 +73,15 @@
                             </h3>
                             <span
                                 class="px-4 py-2 rounded-full text-white text-sm font-semibold
-                                @if ($report->type === 'KEJAHATAN') bg-red-500 
-                                @elseif($report->type === 'PEMBANGUNAN') bg-blue-500 
-                                @elseif($report->type === 'SOSIAL') bg-green-500 
+                                @if ($report->type === 'KEJAHATAN') bg-red-500
+                                @elseif($report->type === 'PEMBANGUNAN') bg-blue-500
+                                @elseif($report->type === 'SOSIAL') bg-green-500
                                 @else bg-gray-400 @endif">
                                 {{ $report->type }}
                             </span>
                         </div>
                         <p class="text-gray-600 mb-4 break-words">{{ $report->description }}</p>
-                        <div class="bg-gray-100 p-4 rounded-lg mb-6 transition duration-300 hover:bg-gray-200">
+                        <div cl ass="bg-gray-100 p-4 rounded-lg mb-6 transition duration-300 hover:bg-gray-200">
                             <h4 class="font-semibold text-gray-700 mb-2">Lokasi:</h4>
                             <p class="text-gray-600">{{ $report->village }}, {{ $report->subdistrict }},
                                 {{ $report->regency }}, {{ $report->province }}</p>
@@ -144,7 +143,8 @@
                     <ol class="list-decimal text-gray-700 space-y-4 pl-6">
                         <li class="transition duration-200 hover:text-gray-900">Pengaduan bisa dibuat hanya jika Anda
                             telah membuat akun sebelumnya.</li>
-                        <li class="transition duration-200 hover:text-gray-900">Keseluruhan data pada pengaduan bernilai
+                        <li class=" transition duration-200 hover:text-gray-900">Keseluruhan data pada pengaduan
+                            bernilai
                             BENAR dan DAPAT DIPERTANGGUNG JAWABKAN.</li>
                         <li class="transition duration-200 hover:text-gray-900">Seluruh bagian data perlu diisi.</li>
                         <li class="transition duration-200 hover:text-gray-900">Periksa tanggapan kami pada Dashboard

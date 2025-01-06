@@ -15,17 +15,16 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-      //akun headstaff
-      User::create([
-        'email' => 'headstaff_jabar@gmail.com',
-        'password' => Hash::make('jabar123'),
-        'role' => 'HEAD_STAFF',
-      ]);
+        //akun headstaff
+        User::create([
+            'email' => 'headstaff_jabar@gmail.com',
+            'password' => Hash::make('jabar123'),
+            'role' => 'HEAD_STAFF',
+        ]);
 
-      Staff_provinces::create([
-        'user_id' => '1',
-        'province' => 'JAWA BARAT',
-      ]);
-
+        Staff_provinces::create([
+            'user_id' => '1',
+            'province' => 'JAWA BARAT',
+        ]);
     }
 }

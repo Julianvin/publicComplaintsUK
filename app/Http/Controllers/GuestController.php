@@ -130,10 +130,11 @@ class GuestController extends Controller
 
     public function monitoringReport()
     {
-        $reports = Report::with(['Response', 'response.progress'])
-            ->where('user_id', auth()->id())
-            ->orderByDesc('created_at')
-            ->get();
+        $reports = Report::with(['Response', 'Response.Progres'])
+        ->where('user_id', auth()->id())
+        ->orderByDesc('created_at')
+        ->get();
+
         // return $reports;
         return view('guest.show_report', compact('reports'));
     }

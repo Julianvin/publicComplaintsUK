@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('responses', function (Blueprint $table) {
-          $table->id();
-          $table->foreignId('report_id')->constrained('reports')->onDelete('cascade');
-          $table->foreignId('staff_id')->constrained('users')->onDelete('cascade');
-          $table->enum('response_status', ['ON_PROCESS', 'DONE', 'REJECT']);
-          $table->timestamps();
+            $table->id();
+            $table->foreignId('report_id')->constrained('reports')->onDelete('cascade');
+            $table->foreignId('staff_id')->constrained('users')->onDelete('cascade');
+            $table->enum('response_status', ['ON_PROCESS', 'DONE', 'REJECT']);
+            $table->timestamps();
         });
     }
 
